@@ -1,18 +1,25 @@
 """Simple Website Monitor Script."""
+"""sudo pip3 install Beautify4"""
+"""sudo pip3 install lxml"""
+"""https://bobbyhadz.com/blog/python-unicodeencodeerror-charmap-codec-cant-encode-characters-in-position"""
+
 import os
 import sys
 import requests
 from bs4 import BeautifulSoup
 import smtplib
+from email.message import EmailMessage
 
-SMTP_USER=''
-SMTP_PASSWORD=''
-SMTP_HOST=''
-SMTP_PORT=''
-SMTP_SSL=False
+# paste this at the start of code
 
-SMTP_FROM_EMAIL=''
-SMTP_TO_EMAIL=''
+SMTP_USER='Richard.MittenTwo@gmail.com'
+SMTP_PASSWORD='fgyczkdduaibwbsw'
+SMTP_HOST='smtp.gmail.com'
+SMTP_PORT='465'
+SMTP_SSL=True
+
+SMTP_FROM_EMAIL='Richard.MittenTwo@gmail.com'
+SMTP_TO_EMAIL='Richard.Mitten@gmail.com'
 
 def email_notification(subject, message):
     """Send an email notification.
@@ -39,6 +46,9 @@ Subject: %s
 
     smtp_server.close()
 
+
+
+
 def cleanup_html(html):
     """Cleanup the HTML content.
 
@@ -55,7 +65,7 @@ def cleanup_html(html):
     for s in soup.select('meta'):
         s.extract()
 
-    return str(soup)
+    return str(soup.encode("utf-8"))
 
 def has_website_changed(website_url, website_name):
     """Check if a website has changed since the last request.
@@ -78,7 +88,7 @@ def has_website_changed(website_url, website_name):
     cache_filename = website_name + "_cache.txt"
 
     if not os.path.exists(cache_filename):
-        file_handle = open(cache_filename, "w")
+        file_handle = open(cache_filename, "wt")
         file_handle.write(response_text)
         file_handle.close()
         return 0
@@ -101,6 +111,7 @@ def has_website_changed(website_url, website_name):
 def main():
     """Check if the passed in website has changed."""
     website_status = has_website_changed(sys.argv[1], sys.argv[2])
+   
 
     if website_status == -1:
         email_notification("An Error has Occurred", "Error While Fetching " + sys.argv[1])
