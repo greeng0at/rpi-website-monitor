@@ -13,7 +13,7 @@ from email.message import EmailMessage
 # paste this at the start of code
 
 SMTP_USER='Richard.MittenTwo@gmail.com'
-SMTP_PASSWORD='fgyczkdduaibwbsw'
+SMTP_PASSWORD='fgyczkdduaibwb'
 SMTP_HOST='smtp.gmail.com'
 SMTP_PORT='465'
 SMTP_SSL=True
