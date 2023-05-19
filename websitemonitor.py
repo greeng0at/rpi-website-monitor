@@ -132,7 +132,7 @@ def main():
    
 
     if website_status == -1:
-        email_notification("An Error has Occurred", "Error While Fetching " + sys.argv[1])
+        """email_notification("An Error has Occurred", "Error While Fetching " + sys.argv[1])"""
         print("Non 2XX response while fetching")
     elif website_status == 0:
         print("Website is the same")
@@ -142,3 +142,4 @@ def main():
         
 if __name__ == "__main__":
     main()
+    
