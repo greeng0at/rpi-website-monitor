@@ -12,8 +12,8 @@ from email.message import EmailMessage
 
 # paste this at the start of code
 
-SMTP_USER='Richard.MittenTwo@gmail.com'
-SMTP_PASSWORD='fgyczkdduaibwbsw'
+SMTP_USER=''
+SMTP_PASSWORD=''
 SMTP_HOST='smtp.gmail.com'
 SMTP_PORT='465'
 SMTP_SSL=True
@@ -67,6 +67,24 @@ def cleanup_html(html):
 
     return str(soup.encode("utf-8"))
 
+def difference(string1, string2):
+      # Split both strings into list items
+  string1 = string1.split()
+  string2 = string2.split()
+
+  A = set(string1) # Store all string1 list items in set A
+  B = set(string2) # Store all string2 list items in set B
+ 
+  str_diff = A.symmetric_difference(B)
+  isEmpty = (len(str_diff) == 0)
+ 
+  if isEmpty:
+    print("No Difference. Both Strings Are Same")
+  else:
+    print("The Difference Between Two Strings: ")
+    print(str_diff)
+
+
 def has_website_changed(website_url, website_name):
     """Check if a website has changed since the last request.
 
@@ -105,7 +123,7 @@ def has_website_changed(website_url, website_name):
         file_handle.truncate()
         file_handle.write(response_text)
         file_handle.close()
-        
+        difference( previous_response_text, response_text )
         return 1
 
 def main():

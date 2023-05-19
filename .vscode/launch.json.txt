@@ -11,7 +11,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true,
-            "args":["http://cualagaa.ie/camps/", "cualagaa.ie.camps"]
+            "args":["https://inss.ie/product/summer-sailing-courses", "inss.ie"]
         }
     ]
 }
